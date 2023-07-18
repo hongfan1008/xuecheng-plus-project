@@ -10,6 +10,7 @@ import com.xuecheng.content.model.po.CourseBase;
 import com.xuecheng.content.service.CourseBaseInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -57,8 +58,18 @@ public class CourseBaseInfoController {
     @ApiOperation("修改课程")
     @PutMapping("/course")
     public CourseBaseInfoDto modifyCourseBase(@RequestBody @Validated EditCourseDto editCourseDto){
-        return null;
+        return courseBaseInfoService.modifyCourseBase(1232141425L,editCourseDto);
     }
 
+    //delete  /course/87
+    //87为课程id
+    //请求参数：课程id
+    //响应：状态码200，不返回信息
+
+    @ApiOperation("删除课程")
+    @DeleteMapping("/course/{id}")
+    public void deleteCourse(@PathVariable Long id){
+        courseBaseInfoService.deleteCourse(id);
+    }
 }
 
